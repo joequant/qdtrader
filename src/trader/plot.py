@@ -20,3 +20,6 @@ def plot_last_price(df):
     p.line('timestampNano', 'lastPrice', source=source)
     return file_html(p, CDN, "last plot")
 
+def pnl_plot(df, portfolio):
+    return plot_test()
+
