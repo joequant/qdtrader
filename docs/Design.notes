@@ -55,6 +55,15 @@ Limitations
 -----------
 They seem to be interested in intraday trading.  So focus on that
 
+
+ToDO
+----
+* Cythonize some of the functions
+* Create a animation of the order book
+* Create an adapter to the strategy so that the strategy module can be
+  used in the trading system
+* Run through different intraday files
+
 Design decisions
 ----------------
 Which language?
