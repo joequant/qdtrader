@@ -1,0 +1,29 @@
+import pandas
+
+class Portfolio:
+    def __init__(self, cash='USD', **kwargs):
+        self.cash = cash
+        self.positions[cash] = 0
+        self.positions = kwargs
+        self.orders = pandas.DataFrame(columns=['time', 'type', 'product', 'amount', 'price'])
+    def add_cash(self, cash_to_add):
+        self.positions[self.cash] += cash_to_add
+    def buy(self, product, amount, price, time):
+        self.positions[product] = self.positions.get(product, 0) + amount
+        self.positions[self.cash] = self.positions.get(self.cash, 0) - amount * price
+        self.orders.append({'time': time,
+                            'type': 'buy',
+                            'product': product,
+                            'amount': amount,
+                            'price': pricce})
+
+    def sell(self, product, amount, price, time):
+        self.positions[product] = self.positions.get(product, 0) - amount
+        self.positions[self.cash] = self.positions.get(self.cash, 0) + amount * price
+        self.orders.append({'time': time,
+                            'type': 'sell',
+                            'product': product,
+                            'amount': amount,
+                            'price': pricce})
+    def orders(self):
+        return self.orders

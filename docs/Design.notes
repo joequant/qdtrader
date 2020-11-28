@@ -1,0 +1,80 @@
+Design notes
+------------
+
+* KISS Principle - Don't get too fancy.
+
+* Load the data
+* Do something to the data
+* Display a report
+
+Features
+--------
+** Should be able to run some canned data exploration
+** Should be able to run different strategies and compare them
+** Should be able to generate different metrics and outputs
+
+** Since the spec says that they are interested in the framework and
+   not the actual strategy, lets include some really dead simple
+   strategies
+
+** Moving average for strategies
+** Sharpe ratios and friends for P&L
+** Some statistic measures for histograms
+
+** Add in some big data/ML stuff later
+
+Not reinventing the wheel
+-------------------------
+** Ugh the data pipeline is dead simple
+** Avoid creating another *framework*
+
+** What should I build versus what should I copy
+** There are probably a dozen frameworks for doing this, but I want a KISS clue code
+
+
+The data 
+--------
+** Nothing too complicated.  Daily files.
+** Start with daily trades
+
+The tech
+--------
+** Quick and dirty python scripts and shell stuff
+** Load in some pandas
+** Run a strategy
+** Get P&L
+** Generate reports
+
+** Run it through canned report generator
+** I want to do canned data exploration myself
+** So generate some plots but I want the plots to be reprooducable
+
+** Modularize
+
+Limitations
+-----------
+They seem to be interested in intraday trading.  So focus on that
+
+Design decisions
+----------------
+Which language?
+python - rapid prototyping - data requirements not huge
+- will off load parts to c++ where critical
+
+Which template engine?
+Jinja2, mako, or genshi
+Mako has most pythonic syntax
+
+Focus?
+Focus on data visualization and backtesting.  The strategy modules
+should be designed so that they can be pushed to production, but
+that's not immediate focus.
+
+Design philosophy
+-----------------
++ Don't overuse objects
++ Use dicts and pandas to move data
+
+Extensions
+----------
++ I want to be able to reuse strategy in production HFT system
