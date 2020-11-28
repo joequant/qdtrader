@@ -94,3 +94,8 @@ bokeh
 pytz
 mako
 pandas
+
+Also add
+
+ffmpeg
+
