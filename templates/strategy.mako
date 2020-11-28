@@ -10,4 +10,6 @@ strategy.run(df, portfolio)
 %>
 
 ${portfolio.orders}
+${portfolio.position_history}
+
 
