@@ -1,4 +1,5 @@
 import pandas
+import trader.transform
 
 class Portfolio:
     def __init__(self, cash='USD', **kwargs):
@@ -45,3 +46,25 @@ class Portfolio:
         return self.positions[self._cash]
     def position(self, product):
         return self.positions.get(product, 0)
+    def mtm(self, df):
+        price_df = trader.transform.last_price(df)
+        mtm_df = pandas.DataFrame(columns=['time', 'mtm'])
+        try:
+            i = self.position_history.iterrows()
+            i1 = i.__next__()[1]
+            i2 = i.__next__()[1]
+            for row in price_df.itertuples():
+                symbol = row[1]
+                time = row[2]
+                price =  row[3]
+                if time < i1['time']:
+                    continue
+                while time >= i2['time']:
+                    i1 = i2
+                    i2 = i.__next__()[1]
+                if time >= i1['time'] and time < i2['time']:
+                    mtm_df = mtm_df.append({'time': time,
+                                   'mtm' : i1[self._cash] + \
+                                   i1[symbol] * price}, ignore_index=True)
+        except StopIteration:
+            return mtm_df
