@@ -12,6 +12,28 @@ strategy1.run(df, p1)
 mtm1 = p1.mtm(df)
 stats1 = trader.performance.summary_stats(mtm1)
 %>
+
+
+<h2>Test Hodl</h2>
+<%
+import trader.strategy.hodl
+p0 = trader.portfolio.Portfolio()
+p0.add_cash(10000)
+strategy0 = trader.strategy.hodl.HodlStrategy()
+strategy0.run(df, p0)
+mtm0 = p0.mtm(df)
+stats0 = trader.performance.summary_stats(mtm0)
+%>
+
+<pre>
+Culmuative return (%): ${stats0['cret'] * 100.0}
+Culmuative var (%): ${stats0['cvar'] * 100.0}
+Sharpe (%): ${stats0['sharpe'] * 100.0}
+
+${p0.orders}
+</pre>
+${trader.plot.plot_line(mtm0, 'time', 'mtm')}
+
 <h2>Test Strategy</h2>
 <pre>
 Culmuative return (%): ${stats1['cret'] * 100.0}

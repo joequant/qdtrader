@@ -47,21 +47,25 @@ class Portfolio:
     def mtm(self, df):
         price_df = trader.transform.last_price(df)
         mtm_list = []
+        i = self.position_history.iterrows()
+        i1 = i.__next__()[1]
         try:
-            i = self.position_history.iterrows()
-            i1 = i.__next__()[1]
             i2 = i.__next__()[1]
-            for row in price_df.itertuples():
-                symbol = row[1]
-                time = row[2]
-                price =  row[3]
-                if time < i1['time']:
-                    continue
-                while time >= i2['time']:
+        except StopIteration:
+            i2 = None
+        for row in price_df.itertuples():
+            symbol = row[1]
+            time = row[2]
+            price =  row[3]
+            if time < i1['time']:
+                continue
+            while i2 is not None and time >= i2['time']:
+                try:
                     i1 = i2
                     i2 = i.__next__()[1]
-                if time >= i1['time'] and time < i2['time']:
-                    mtm_list.append((time, i1[self._cash] + \
-                                     i1[symbol] * price))
-        except StopIteration:
-            return pandas.DataFrame(mtm_list, columns=['time', 'mtm'])
+                except StopIteration:
+                    i1 = i2
+                    i2 = None
+            mtm_list.append((time, i1[self._cash] + \
+                             i1[symbol] * price))
+        return pandas.DataFrame(mtm_list, columns=['time', 'mtm'])
