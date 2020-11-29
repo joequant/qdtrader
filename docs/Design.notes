@@ -25,6 +25,17 @@ Princples
 * Do something to the data
 * Display a report
 
+Other systems
+-------------
+* Jupyter - Really good for one-off data exploration but not good for
+  sharing data or reproducing data analysis pipelines
+* python backtesters - (zipline, backtrader, qstrader) - Focused on
+  backtesting and not data exploration.  Hard to interoperate, and some
+  issues with licensing (backtrader is GPL)
+* propreitary solutions - Some investment banks have python based data
+  exploration systems.  But they are proprietary.  Would be nice to
+  get an ex-quant from one of those banks to rewrite the tools they
+  have in open source.
 
 Features
 --------
