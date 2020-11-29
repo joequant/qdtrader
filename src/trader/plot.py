@@ -61,10 +61,10 @@ def plot_order_book_animation(df, count1=None, count2=None):
         if count2 is not None and count > count2:
             count = count+1
             continue
-        askx_item = [row[5], row[7], row[9], row[11], row[13]]
-        asky_item = [row[6], row[8], row[10], row[12], row[14]]
-        bidx_item = [row[15], row[17], row[19], row[21], row[23]]
-        bidy_item = [row[16], row[18], row[20], row[22], row[24]]
+        askx_item = [row[4], row[6], row[8], row[10], row[12]]
+        asky_item = [row[5], row[7], row[9], row[11], row[13]]
+        bidx_item = [row[14], row[16], row[18], row[20], row[22]]
+        bidy_item = [row[15], row[17], row[19], row[21], row[23]]
         bidy_citem = [sum(bidy_item[0:x]) for x in range(0, len(bidy_item))]
         asky_citem = [sum(asky_item[0:x]) for x in range(0, len(asky_item))]
 

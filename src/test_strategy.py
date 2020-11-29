@@ -7,7 +7,7 @@ import trader.strategy.testsignal
 import trader.performance
 import pandas
 
-df =  pandas.read_csv("../data/ModelDepthProto_20170125.csv")
+df =  pandas.read_csv("../data/ModelDepthProto_20170125.csv", index_col=1)
 
 p0 = trader.portfolio.Portfolio()
 p0.add_cash(10000)

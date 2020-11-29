@@ -16,8 +16,8 @@ class TestSignalStrategy(Strategy):
         prev_time = None
         for row in df.itertuples():
             symbol = row[1]
-            time = row[2]
-            price =  row[3]
+            time = row[0]
+            price =  row[2]
             if i1 is None:
                 return
             if time == i1['time'] or (prev_time is not None and \

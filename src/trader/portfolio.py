@@ -54,9 +54,9 @@ class Portfolio:
         except StopIteration:
             i2 = None
         for row in price_df.itertuples():
+            price =  row[2]
             symbol = row[1]
-            time = row[2]
-            price =  row[3]
+            time = row[0]
             if time < i1['time']:
                 continue
             while i2 is not None and time >= i2['time']:

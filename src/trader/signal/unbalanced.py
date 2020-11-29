@@ -9,13 +9,13 @@ class UnbalancedBook(Signal):
         prev_ask1p = None
         prev_bid1p = None
         for row in df.itertuples():
-            time  = row[2]
-            lastPrice = row[3]
-            lastQty = row[4]
-            ask1p = row[5]
-            ask1q = row[6]
-            bid1p = row[15]
-            bid1q = row[16]
+            time  = row[0]
+            lastPrice = row[2]
+            lastQty = row[3]
+            ask1p = row[4]
+            ask1q = row[5]
+            bid1p = row[14]
+            bid1q = row[15]
             if ask1q == 0 or bid1q == 0:
                 continue
             if prev_ask1p is not None and ask1p == prev_ask1p:
