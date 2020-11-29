@@ -40,8 +40,6 @@ class Portfolio:
         self.position_history = \
             self.position_history.append(d,
                                          ignore_index=True)
-    def orders(self):
-        return self.orders
     def cash(self):
         return self.positions[self._cash]
     def position(self, product):
