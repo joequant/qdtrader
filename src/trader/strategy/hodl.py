@@ -9,7 +9,6 @@ class HodlStrategy(Strategy):
         time = df.iloc[0].name
         symbol = df.iloc[0][0]
         price = df.iloc[0][1]
-        print(time, symbol, price)
         portfolio.buy(symbol, portfolio.cash() / price,
                       price, time)
         pass

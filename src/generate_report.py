@@ -9,7 +9,6 @@ import logging
 logging.info("reading " + sys.argv[1])
 df = pandas.read_csv(sys.argv[1], index_col=1)
 logging.info("done reading")
-print(df)
 dir = sys.argv[2]
 for i in sys.argv[3:]:
     logging.info("reading template " + sys.argv[1])
