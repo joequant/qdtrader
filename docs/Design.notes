@@ -7,6 +7,7 @@ Design notes
 * Do something to the data
 * Display a report
 
+
 Features
 --------
 ** Should be able to run some canned data exploration
@@ -22,6 +23,13 @@ Features
 ** Some statistic measures for histograms
 
 ** Add in some big data/ML stuff later
+
+
+Things to plot next
+-------------------
+** pdfs to see deviation from GBM
+** bin items
+** animate evolution of order book
 
 Not reinventing the wheel
 -------------------------
