@@ -11,6 +11,11 @@ the glue code.  This makes it easy to create canned reports and the
 intention here is to make it easy to add new strategies, signal
 generators to the system
 
+Doing a quick look at the data, it looking like that the strategies
+that I've used to set up the system aren't going to be that
+profitable, and that the money that is to be made with this would be a
+market making strategy.
+
 Princples
 ---------
 
@@ -108,7 +113,11 @@ Design philosophy
 
 Extensions
 ----------
-+ I want to be able to reuse strategy in production HFT system
++ I want to be able to reuse strategy in production HFT system.  The
+module that goes into the production system would likely be c++ and I
+want to connect the C++ to a python adapter module.  I've put that off
+in the current system since I don't know what the execution system
+looks like.
 
 Dependencies
 ------------
@@ -117,7 +126,20 @@ pytz
 mako
 pandas
 
-Also add
+What I'd look for now
+---------------------
 
-ffmpeg
+The thing about the time series is that just a quick look suggests
+that directional strategies are not likely to be very profitable.  The
+straegies that might be useful would be market making strategies.
 
+1) So what I'd do here would be to develop things that would visualize
+things in bins which would let one see how much mean reversion there
+would be.
+
+2) Then put some more changes in portfolio manager that would model
+buys and ses interacting with the order book.
+
+3) Then I'd put in a simple mean reversion strategy, and look for
+short term movements above or below the mean, and then see the
+interaction with portfolio values.
