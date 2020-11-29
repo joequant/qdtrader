@@ -16,7 +16,7 @@ print(trader.performance.summary_stats(mtm))
 
 p2 = trader.portfolio.Portfolio()
 p2.add_cash(10000)
-strategy = trader.strategy.testsignal.TestSignalStrategy(ratio=0.2)
+strategy = trader.strategy.testsignal.TestSignalStrategy()
 strategy.run(df, p2)
 print(p2.orders)
 
