@@ -45,4 +45,4 @@ def plot_animate_test():
     ani = animation.FuncAnimation(
         fig, animate, interval=20, blit=True, save_count=50)
     return ani.to_html5_video()
-
+    

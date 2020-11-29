@@ -1,6 +1,19 @@
 Design notes
 ------------
 
+What I did was to create a simple analytics platform to do signal
+generation and backtesting.  The signal gneration and strategies in
+the system is not very good, but it's just used so that one can add a
+lot of new analyics.
+
+The original thing that I did was to use a python templates engine is
+the glue code.  This makes it easy to create canned reports and the
+intention here is to make it easy to add new strategies, signal
+generators to the system
+
+Princples
+---------
+
 * KISS Principle - Don't get too fancy.
 
 * Load the data
@@ -30,6 +43,7 @@ Things to plot next
 ** pdfs to see deviation from GBM
 ** bin items
 ** animate evolution of order book
+** connect to twisted
 
 Not reinventing the wheel
 -------------------------
