@@ -48,7 +48,7 @@ class Portfolio:
         return self.positions.get(product, 0)
     def mtm(self, df):
         price_df = trader.transform.last_price(df)
-        mtm_df = pandas.DataFrame(columns=['time', 'mtm'])
+        mtm_list = []
         try:
             i = self.position_history.iterrows()
             i1 = i.__next__()[1]
@@ -63,8 +63,7 @@ class Portfolio:
                     i1 = i2
                     i2 = i.__next__()[1]
                 if time >= i1['time'] and time < i2['time']:
-                    mtm_df = mtm_df.append({'time': time,
-                                   'mtm' : i1[self._cash] + \
-                                   i1[symbol] * price}, ignore_index=True)
+                    mtm_list.append((time, i1[self._cash] + \
+                                     i1[symbol] * price))
         except StopIteration:
-            return mtm_df
+            return pandas.DataFrame(mtm_list, columns=['time', 'mtm'])
