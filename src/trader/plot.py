@@ -44,5 +44,47 @@ def plot_animate_test():
 
     ani = animation.FuncAnimation(
         fig, animate, interval=20, blit=True, save_count=50)
-    return ani.to_html5_video()
-    
+    return ani.to_jstml()
+
+def plot_order_book_animation(df, count1=None, count2=None):
+    fig, ax = plt.subplots()
+    askx = []
+    asky = []
+    bidx = []
+    bidy = []
+    count = 0
+    for row in df.itertuples():
+        time = row[2]
+        if count1 is not None and count < count1:
+            count = count+1
+            continue
+        if count2 is not None and count > count2:
+            count = count+1
+            continue
+        askx_item = [row[5], row[7], row[9], row[11], row[13]]
+        asky_item = [row[6], row[8], row[10], row[12], row[14]]
+        bidx_item = [row[15], row[17], row[19], row[21], row[23]]
+        bidy_item = [row[16], row[18], row[20], row[22], row[24]]
+        bidy_citem = [sum(bidy_item[0:x]) for x in range(0, len(bidy_item))]
+        asky_citem = [sum(asky_item[0:x]) for x in range(0, len(asky_item))]
+
+        askx.append(askx_item)
+        asky.append(asky_citem)
+        bidx.append(bidx_item)
+        bidy.append(bidy_citem)
+        count = count+1
+
+    print(len(askx))
+    line1, = ax.plot(askx[0], asky[0])
+    line2, = ax.plot(bidx[0], bidy[0])
+
+    def animate(i):
+        line1.set_xdata(askx[i])
+        line1.set_ydata(asky[i])
+        line2.set_xdata(bidx[i])
+        line2.set_ydata(bidy[i])
+
+    ani = animation.FuncAnimation(
+        fig, animate, interval=20, frames=len(askx)-1)
+
+    return ani.to_jshtml()
