@@ -1,4 +1,5 @@
 import trader.transform
+import math
 
 def stats(df):
     pass
@@ -9,5 +10,5 @@ def summary_stats(mtm):
     return {
         "cret": cret,
         "cvar": cvar,
-        "sharpe": cret/cvar
+        "sharpe": cret/math.sqrt(cvar)
         }
