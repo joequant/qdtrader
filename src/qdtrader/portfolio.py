@@ -52,8 +52,8 @@ class Portfolio:
             i2 = i.__next__()[1]
         except StopIteration:
             i2 = None
-        for row in df.iter_price_tuples():
-            (time, symbol, price, quantity) = df.tuple_to_tick(row)
+        for row in df.price_ticks().itertuples():
+            (time, symbol, price, quantity) = row[0:4]
             if time < i1['time']:
                 continue
             while i2 is not None and time >= i2['time']:

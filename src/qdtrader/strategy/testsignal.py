@@ -13,8 +13,8 @@ class TestSignalStrategy(Strategy):
         signal_iter = signals.iterrows()
         i1 = signal_iter.__next__()[1]
         prev_time = None
-        for row in df.iter_price_tuples():
-            (time, symbol, price, quantity) = df.tuple_to_tick(row)
+        for row in df.price_ticks().itertuples():
+            (time, symbol, price, quantity) = row[0:4]
             if i1 is None:
                 return
             if time == i1['time'] or (prev_time is not None and \

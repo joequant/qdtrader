@@ -6,8 +6,8 @@ class TestStrategy(Strategy):
         super().__init__()
         self.reflevel = None
     def run(self, df, portfolio):
-        for row in df.iter_price_tuples():
-            (time, symbol, price, quantity) = df.tuple_to_tick(row)
+        for row in df.price_ticks().itertuples():
+            (time, symbol, price, quantity) = row[0:4]
             if self.reflevel is None:
                 self.reflevel = price
             if price > 1.005 * self.reflevel:

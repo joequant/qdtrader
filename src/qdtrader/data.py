@@ -17,11 +17,6 @@ class CSVDataFrame(Data):
         pass
     def itertuples(self):
         return self._dataframe.itertuples()
-    def iter_price_tuples(self):
-        df = qdtrader.transform.last_price(self._dataframe)
-        return df.itertuples()
-    def tuple_to_tick(self, row):
-        return (row[0], row[1], row[2], row[3])
     def tuple_to_ask(self, row, depth=1):
         return (row[3+depth], row[4+depth])
     def tuple_to_bid(self, row, depth=1):
@@ -37,5 +32,5 @@ class CSVDataFrame(Data):
             df.columns[1]: "price",
             df.columns[2]: "qty"
         })
-        return df.loc[:, :'qty']
+        return df
 
