@@ -83,8 +83,9 @@ def plot_order_book_animation(df, count1=None, count2=None):
         line1.set_ydata(asky[i])
         line2.set_xdata(bidx[i])
         line2.set_ydata(bidy[i])
+        return [line1, line2]
 
     ani = animation.FuncAnimation(
-        fig, animate, interval=20, frames=len(askx)-1)
+        fig, animate, interval=20, blit=True, frames=len(askx)-1)
 
     return ani.to_jshtml()
