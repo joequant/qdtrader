@@ -6,9 +6,7 @@ class HodlStrategy(Strategy):
         super().__init__()
         self.reflevel = None
     def run(self, df, portfolio):
-        time = df.iloc[0].name
-        symbol = df.iloc[0][0]
-        price = df.iloc[0][1]
+        (time, symbol, price, quantity) = df.nth_price_tick(0)
         portfolio.buy(symbol, portfolio.cash() / price,
                       price, time)
         pass

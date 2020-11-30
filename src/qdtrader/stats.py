@@ -4,5 +4,5 @@ def count(df):
     return df.count
 
 def describe_stats(df):
-    return qdtrader.transform.last_price(df).describe()
+    return df.price_ticks().describe()
 

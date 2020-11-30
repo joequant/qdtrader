@@ -8,14 +8,10 @@ class UnbalancedBook(Signal):
         dict_list = []
         prev_ask1p = None
         prev_bid1p = None
-        for row in df.itertuples():
-            time  = row[0]
-            lastPrice = row[2]
-            lastQty = row[3]
-            ask1p = row[4]
-            ask1q = row[5]
-            bid1p = row[14]
-            bid1q = row[15]
+        for row in df.iter_price_tuples():
+            (time, symbol, lastPrice, lastQty)  = df.tuple_to_tick(row)
+            (ask1p, ask1q) = df.tuple_to_ask(row, 1)
+            (bid1p, bid1q) = df.tuple_to_bid(row, 1)
             if ask1q == 0 or bid1q == 0:
                 continue
             if prev_ask1p is not None and ask1p == prev_ask1p:

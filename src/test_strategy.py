@@ -5,9 +5,11 @@ import qdtrader.strategy.hodl
 import qdtrader.strategy.test
 import qdtrader.strategy.testsignal
 import qdtrader.performance
+import qdtrader.data
 import pandas
 
-df =  pandas.read_csv("../data/ModelDepthProto_20170125.csv", index_col=1)
+df =  qdtrader.data.CSVDataFrame("../data/ModelDepthProto_20170125.csv",
+                                 index_col=1)
 
 p0 = qdtrader.portfolio.Portfolio()
 p0.add_cash(10000)

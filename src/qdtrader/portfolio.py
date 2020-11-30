@@ -45,7 +45,6 @@ class Portfolio:
     def position(self, product):
         return self.positions.get(product, 0)
     def mtm(self, df):
-        price_df = qdtrader.transform.last_price(df)
         mtm_list = []
         i = self.position_history.iterrows()
         i1 = i.__next__()[1]
@@ -53,10 +52,8 @@ class Portfolio:
             i2 = i.__next__()[1]
         except StopIteration:
             i2 = None
-        for row in price_df.itertuples():
-            price =  row[2]
-            symbol = row[1]
-            time = row[0]
+        for row in df.iter_price_tuples():
+            (time, symbol, price, quantity) = df.tuple_to_tick(row)
             if time < i1['time']:
                 continue
             while i2 is not None and time >= i2['time']:

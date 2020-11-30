@@ -15,9 +15,9 @@ def plot_test():
     return file_html(plot, CDN, "my plot")
 
 def plot_last_price(df):
-    source = ColumnDataSource(qdtrader.transform.last_price(df))
+    source = ColumnDataSource(df.price_ticks())
     p = figure()
-    p.line('timestampNano', 'lastPrice', source=source)
+    p.line('time', 'price', source=source)
     return file_html(p, CDN, "last plot")
 
 def plot_line(df, x, y):

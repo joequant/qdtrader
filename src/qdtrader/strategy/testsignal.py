@@ -9,15 +9,12 @@ class TestSignalStrategy(Strategy):
         self.purchase_ratio = purchase_ratio
         self.signal_generator = UnbalancedBook(ratio)
     def run(self, df, portfolio):
-        df = qdtrader.transform.last_price(df)
         signals = self.signal_generator.generate(df)
         signal_iter = signals.iterrows()
         i1 = signal_iter.__next__()[1]
         prev_time = None
-        for row in df.itertuples():
-            symbol = row[1]
-            time = row[0]
-            price =  row[2]
+        for row in df.iter_price_tuples():
+            (time, symbol, price, quantity) = df.tuple_to_tick(row)
             if i1 is None:
                 return
             if time == i1['time'] or (prev_time is not None and \
