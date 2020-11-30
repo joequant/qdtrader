@@ -1,6 +1,6 @@
-from trader.strategy import Strategy
-from trader.signal.unbalanced import UnbalancedBook; 
-import trader.transform
+from qdtrader.strategy import Strategy
+from qdtrader.signal.unbalanced import UnbalancedBook; 
+import qdtrader.transform
 
 class TestSignalStrategy(Strategy):
     def __init__(self, ratio=0.2, purchase_ratio=0.5):
@@ -9,7 +9,7 @@ class TestSignalStrategy(Strategy):
         self.purchase_ratio = purchase_ratio
         self.signal_generator = UnbalancedBook(ratio)
     def run(self, df, portfolio):
-        df = trader.transform.last_price(df)
+        df = qdtrader.transform.last_price(df)
         signals = self.signal_generator.generate(df)
         signal_iter = signals.iterrows()
         i1 = signal_iter.__next__()[1]

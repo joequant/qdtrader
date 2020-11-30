@@ -1,6 +1,6 @@
 <%
-import trader.plot
+import qdtrader.plot
 %>
 
-${trader.plot.plot_last_price(df)}
-${trader.plot.plot_order_book_animation(df, 0, 2000)}
+${qdtrader.plot.plot_last_price(df)}
+${qdtrader.plot.plot_order_book_animation(df, 0, 2000)}

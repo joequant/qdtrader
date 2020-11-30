@@ -7,7 +7,7 @@ from bokeh.models import ColumnDataSource
 from bokeh.models.tools import HoverTool
 from bokeh.embed import file_html
 from bokeh.resources import CDN
-import trader.transform
+import qdtrader.transform
 
 def plot_test():
     plot = figure()
@@ -15,7 +15,7 @@ def plot_test():
     return file_html(plot, CDN, "my plot")
 
 def plot_last_price(df):
-    source = ColumnDataSource(trader.transform.last_price(df))
+    source = ColumnDataSource(qdtrader.transform.last_price(df))
     p = figure()
     p.line('timestampNano', 'lastPrice', source=source)
     return file_html(p, CDN, "last plot")

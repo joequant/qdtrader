@@ -1,6 +1,6 @@
 <%
-import trader.stats
+import qdtrader.stats
 %>
 <pre>
-${trader.stats.describe_stats(df)}
+${qdtrader.stats.describe_stats(df)}
 </pre>

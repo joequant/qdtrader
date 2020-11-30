@@ -1,4 +1,4 @@
-import trader.transform
+import qdtrader.transform
 import math
 
 def stats(df):

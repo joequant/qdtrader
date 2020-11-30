@@ -1,7 +1,7 @@
 <%
-import trader.stats
+import qdtrader.stats
 %>
 
 Hello world!!!
 
-This file has ${trader.stats.count(df)}
+This file has ${qdtrader.stats.count(df)}

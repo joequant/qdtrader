@@ -1,5 +1,5 @@
 import pandas
-import trader.transform
+import qdtrader.transform
 
 class Portfolio:
     def __init__(self, cash='USD', **kwargs):
@@ -45,7 +45,7 @@ class Portfolio:
     def position(self, product):
         return self.positions.get(product, 0)
     def mtm(self, df):
-        price_df = trader.transform.last_price(df)
+        price_df = qdtrader.transform.last_price(df)
         mtm_list = []
         i = self.position_history.iterrows()
         i1 = i.__next__()[1]

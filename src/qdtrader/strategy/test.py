@@ -1,12 +1,12 @@
-from trader.strategy import Strategy
-import trader.transform
+from qdtrader.strategy import Strategy
+import qdtrader.transform
 
 class TestStrategy(Strategy):
     def __init__(self):
         super().__init__()
         self.reflevel = None
     def run(self, df, portfolio):
-        df = trader.transform.last_price(df)
+        df = qdtrader.transform.last_price(df)
         for row in df.itertuples():
             symbol = row[1]
             time = row[0]

@@ -1,4 +1,4 @@
-from trader.signal import Signal
+from qdtrader.signal import Signal
 import pandas
 
 class UnbalancedBook(Signal):

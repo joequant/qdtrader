@@ -1,6 +1,6 @@
 <%
-import trader.plot
+import qdtrader.plot
 %>
 
-${trader.plot.plot_animate_test()}
+${qdtrader.plot.plot_animate_test()}
 

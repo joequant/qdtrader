@@ -1,5 +1,5 @@
-from trader.strategy import Strategy
-import trader.transform
+from qdtrader.strategy import Strategy
+import qdtrader.transform
 
 class HodlStrategy(Strategy):
     def __init__(self):
