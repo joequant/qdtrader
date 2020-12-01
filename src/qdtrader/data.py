@@ -9,13 +9,8 @@ class Data:
 class ModelDepthProtoDataFrame(Data):
     def __init__(self, filename, index_col=1):
         self._dataframe = pandas.read_csv(filename, index_col=1)
-    def df():
+    def df(self):
         return self._dataframe
-    def nth_price_tick(self, i):
-        row = self._dataframe.iloc[i]
-        return (row.name, row[0], row[1], row[2])
-    def price_rows(self):
-        pass
     def itertuples(self):
         return self._dataframe.itertuples()
     def tuple_to_ask(self, row, depth=1):
@@ -27,6 +22,30 @@ class ModelDepthProtoDataFrame(Data):
         return self._dataframe.count
     def price_ticks(self):
         df = qdtrader.transform.last_price(self._dataframe)
+        df.index.names = ["time"]
+        df = df.rename(columns={
+            df.columns[0]: "symbol",
+            df.columns[1]: "price",
+            df.columns[2]: "qty"
+        })
+        return df
+
+class CryptoDownload(Data):
+    def __init__(self, filename, index_col=1):
+        self._dataframe = pandas.read_csv(filename, index_col=0,skiprows=1)
+    def df(self):
+        return self._dataframe
+    def itertuples(self):
+        return self._dataframe.itertuples()
+    def tuple_to_ask(self, row, depth=1):
+        return None
+    def tuple_to_bid(self, row, depth=1):
+        return None
+    @property
+    def count(self):
+        return self._dataframe.count
+    def price_ticks(self):
+        df = self.df().loc[:,['Symbol','Close','Volume BTC']]
         df.index.names = ["time"]
         df = df.rename(columns={
             df.columns[0]: "symbol",
