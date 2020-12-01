@@ -9,7 +9,7 @@ import logging
 
 logging.info("reading " + sys.argv[1])
 base = os.path.basename(sys.argv[1]).rsplit('.', 1)[0]
-df = qdtrader.data.CSVDataFrame(sys.argv[1])
+df = qdtrader.data.get_data(sys.argv[1])
 logging.info("done reading")
 dir = sys.argv[2]
 for i in sys.argv[3:]:

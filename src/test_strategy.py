@@ -8,8 +8,7 @@ import qdtrader.performance
 import qdtrader.data
 import pandas
 
-df =  qdtrader.data.CSVDataFrame("../data/ModelDepthProto_20170125.csv",
-                                 index_col=1)
+df =  qdtrader.data.get_data("../data/ModelDepthProto_20170125.csv")
 
 p0 = qdtrader.portfolio.Portfolio()
 p0.add_cash(10000)

@@ -1,11 +1,12 @@
 import pandas
 import qdtrader.transform
+import os
 
 class Data:
     def __init__(self):
         pass
 
-class CSVDataFrame(Data):
+class ModelDepthProtoDataFrame(Data):
     def __init__(self, filename, index_col=1):
         self._dataframe = pandas.read_csv(filename, index_col=1)
     def df():
@@ -34,3 +35,9 @@ class CSVDataFrame(Data):
         })
         return df
 
+def get_data(filename):
+    basename = os.path.basename(filename)
+    if "ModelDepthProto" in basename:
+        return ModelDepthProtoDataFrame(filename)
+    elif "Binance" in basename:
+        return CryptoDownload(filename)
