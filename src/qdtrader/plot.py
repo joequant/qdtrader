@@ -44,7 +44,7 @@ def plot_animate_test():
 
     ani = animation.FuncAnimation(
         fig, animate, interval=20, blit=True, save_count=50)
-    return ani.to_jstml()
+    return ani.to_jshtml()
 
 def plot_order_book_animation(df, count1=None, count2=None):
     fig, ax = plt.subplots()
