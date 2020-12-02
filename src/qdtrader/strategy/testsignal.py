@@ -11,7 +11,10 @@ class TestSignalStrategy(Strategy):
     def run(self, df, portfolio):
         signals = self.signal_generator.generate(df)
         signal_iter = signals.iterrows()
-        i1 = signal_iter.__next__()[1]
+        try:
+            i1 = signal_iter.__next__()[1]
+        except StopIteration:
+            return
         prev_time = None
         for row in df.price_ticks().itertuples():
             (time, symbol, price, quantity) = row[0:4]

@@ -12,6 +12,8 @@ class UnbalancedBook(Signal):
             (time, symbol, lastPrice, lastQty)  = row[0:4]
             (ask1p, ask1q) = df.tuple_to_ask(row, 1)
             (bid1p, bid1q) = df.tuple_to_bid(row, 1)
+            if ask1p is None or ask1q is None:
+                break
             if ask1q == 0 or bid1q == 0:
                 continue
             if prev_ask1p is not None and ask1p == prev_ask1p:

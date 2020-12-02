@@ -21,6 +21,8 @@ def plot_last_price(df):
     return file_html(p, CDN, "last plot")
 
 def plot_line(df, x, y):
+    if df is None:
+        return ""
     source = ColumnDataSource(df)
     p = figure()
     p.line(x, y, source=source)

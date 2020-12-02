@@ -47,7 +47,10 @@ class Portfolio:
     def mtm(self, df):
         mtm_list = []
         i = self.position_history.iterrows()
-        i1 = i.__next__()[1]
+        try:
+            i1 = i.__next__()[1]
+        except StopIteration:
+            return
         try:
             i2 = i.__next__()[1]
         except StopIteration:

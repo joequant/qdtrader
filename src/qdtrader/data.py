@@ -38,9 +38,9 @@ class CryptoDownload(Data):
     def itertuples(self):
         return self._dataframe.itertuples()
     def tuple_to_ask(self, row, depth=1):
-        return None
+        return (None, None)
     def tuple_to_bid(self, row, depth=1):
-        return None
+        return (None, None)
     @property
     def count(self):
         return self._dataframe.count
