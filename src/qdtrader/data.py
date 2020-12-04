@@ -33,6 +33,7 @@ class ModelDepthProtoDataFrame(Data):
 class CryptoDownload(Data):
     def __init__(self, filename, index_col=1):
         self._dataframe = pandas.read_csv(filename, index_col=0,skiprows=1)
+        self._dataframe.sort_index(inplace=True)
     def df(self):
         return self._dataframe
     def itertuples(self):
